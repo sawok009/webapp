@@ -6,15 +6,33 @@
     <title>ระบบบริหารจัดการสมาคม</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* ตั้งค่า Font ให้กับทุกส่วนของหน้าเว็บ */
-        body, h1, h2, h3, h4, h5, h6, .nav-link, .btn {
+        /* ตั้งค่าพื้นหลังไล่เฉดม่วงไปชมพู */
+        body {
             font-family: "Noto Sans Thai", sans-serif !important;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #8e44ad, #ff9a9e);
+            background-attachment: fixed;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* เพิ่มความโปร่งแสงให้คอนเทนเนอร์เพื่อให้เห็นพื้นหลังสวยขึ้น */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .iframe-wrapper { 
             width: 100%; 
             height: 700px; 
             border: none; 
+        }
+
+        /* ปรับสี Tab ให้เข้ากับธีม */
+        .nav-tabs .nav-link.active {
+            color: #8e44ad;
+            font-weight: bold;
         }
     </style>
 </head>
