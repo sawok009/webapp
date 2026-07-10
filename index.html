@@ -4,48 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบบริหารจัดการสมาคม</title>
-    <!-- โหลด Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .app-container { min-height: 70vh; }
         .iframe-wrapper { width: 100%; height: 700px; border: none; }
+        .fallback-btn { margin-top: -650px; position: relative; z-index: 10; }
     </style>
 </head>
 <body class="bg-light p-4">
 
 <div class="container">
-    <h2 class="mb-4 text-center">ระบบบริหารจัดการ</h2>
+    <h2 class="mb-4 text-center">ระบบบริหารจัดการสมาคม</h2>
 
-    <!-- ส่วน Tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1-pane" type="button">1. ระบบลงทะเบียน</button>
+            <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1-pane" type="button">1. ลงทะเบียน</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2-pane" type="button">2. ระบบส่งหลักฐาน</button>
+            <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2-pane" type="button">2. ส่งหลักฐาน</button>
         </li>
     </ul>
 
-    <!-- ส่วนเนื้อหา -->
     <div class="tab-content bg-white p-3 border-start border-end border-bottom rounded-bottom" id="myTabContent">
         
         <!-- Tab 1: ลงทะเบียน -->
         <div class="tab-pane fade show active" id="tab1-pane" role="tabpanel">
             <div class="text-center py-5">
-             <iframe src="https://https://script.google.com/macros/s/AKfycbyZIZKDhiecM_kG13-1AIg3BicMCAn5apAn3Bk6TPQGw4SzvMdhmIHr8FgKi5xfYIMj/exec" width="100%" height="1000" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://script.google.com/macros/s/AKfycbyZIZKDhiecM_kG13-1AIg3BicMCAn5apAn3Bk6TPQGw4SzvMdhmIHr8FgKi5xfYIMj/exec" class="iframe-wrapper"></iframe>
+                <div class="fallback-btn">
+                    <a href="https://script.google.com/macros/s/AKfycbyZIZKDhiecM_kG13-1AIg3BicMCAn5apAn3Bk6TPQGw4SzvMdhmIHr8FgKi5xfYIMj/exec" target="_blank" class="btn btn-primary">หากระบบไม่โหลด คลิกเพื่อเปิดหน้าใหม่</a>
+                </div>
             </div>
         </div>
 
         <!-- Tab 2: ส่งหลักฐาน -->
         <div class="tab-pane fade" id="tab2-pane" role="tabpanel">
             <div class="text-center py-5">
-                <iframe src="https://script.google.com/macros/s/AKfycbw7Uy8XM8KnZUu6T_xSbO3e8e5bwXozNvVewd7HJ3mYG3yUXmaiN22DOv-_kjL_jTnl/exec" width="100%" height="1000" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://script.google.com/macros/s/AKfycbw7Uy8XM8KnZUu6T_xSbO3e8e5bwXozNvVewd7HJ3mYG3yUXmaiN22DOv-_kjL_jTnl/exec" class="iframe-wrapper"></iframe>
+                <div class="fallback-btn">
+                    <a href="https://script.google.com/macros/s/AKfycbw7Uy8XM8KnZUu6T_xSbO3e8e5bwXozNvVewd7HJ3mYG3yUXmaiN22DOv-_kjL_jTnl/exec" target="_blank" class="btn btn-success">หากระบบไม่โหลด คลิกเพื่อเปิดหน้าใหม่</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- โหลด Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
