@@ -35,7 +35,20 @@
         }
         .card-menu:hover { transform: scale(1.02); }
         .icon-box { font-size: 2rem; color: #9F2DFD; }
-        .iframe-container { width: 100%; height: 70vh; border: none; }
+        .iframe-container { 
+            width: 100%; 
+            height: 70vh; /* ค่าเริ่มต้นสำหรับมือถือ */
+            border: none;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* สำหรับหน้าจอขนาดใหญ่ขึ้น (Desktop) ปรับให้สูงขึ้นเป็น 80vh หรือมากกว่า */
+        @media (min-width: 992px) {
+            .iframe-container {
+                height: 80vh; 
+            }
+        }
     </style>
 </head>
 <body>
