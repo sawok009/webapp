@@ -59,7 +59,12 @@
     </style>
 </head>
 <body>
-
+<!-- ส่วนแสดง Loading -->
+<div id="loading-overlay">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">กำลังโหลด...</span>
+    </div>
+</div>
 <div class="container dashboard-container text-center">
   <!-- ปรับปรุงรูปภาพโดยใช้ ID ที่ถูกต้อง -->
     <img src="https://lh3.googleusercontent.com/d/1IAE1glO9bBYgpWwoqMZENtA7xRa7YzCP" 
@@ -112,6 +117,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function loadContent(id) {
+        // แสดง Loading
+        Swal.fire({
+            title: 'กำลังโหลดข้อมูล...',
+            allowOutsideClick: false,
+            didOpen: () => { Swal.showLoading() }
+        });
+
         const iframe = document.getElementById('modalIframe');
         const title = document.getElementById('modalTitle');
         const urls = {
@@ -123,7 +135,13 @@
         
         iframe.src = urls[id];
         title.innerText = titles[id];
+
+        // ซ่อนเมื่อโหลดเสร็จ
+        iframe.onload = function() {
+            Swal.close();
+        };
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
