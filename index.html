@@ -4,144 +4,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบบริหารจัดการสมาคม</title>
-    <!-- โหลด Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- โหลดไอคอนจาก FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* เพิ่มบรรทัดนี้เข้าไป */
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;700&display=swap');
+        
         body {
-            font-family: "Noto Sans Thai", sans-serif !important;
+            font-family: "Noto Sans Thai", sans-serif;
             min-height: 100vh;
             background: linear-gradient(to bottom, #9F2DFD, #F7ACFA);
             background-attachment: fixed;
-            padding-top: 2rem;
-            padding-bottom: 2rem;
             margin: 0;
-        }
-        .dashboard-container {
-            max-width: 900px;
-            margin: auto;
+            padding: 20px 10px;
         }
 
-        .card-menu {
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-            border: none;
-            border-radius: 20px;
+        /* ปรับขนาดตัวอักษรให้เล็กลงในมือถือ */
+        @media (max-width: 576px) {
+            h1 { font-size: 1.5rem !important; }
+            h4 { font-size: 1rem !important; }
+            .dashboard-container { padding: 0 !important; }
+            .card-menu { padding: 15px !important; }
+        }
+
+        .dashboard-container { max-width: 800px; margin: auto; }
+        .card-menu { 
+            transition: transform 0.3s; 
+            cursor: pointer; 
+            border-radius: 15px; 
             background: rgba(255, 255, 255, 0.95);
         }
-
-        .card-menu:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-
-        .icon-box {
-            font-size: 2.5rem;
-            color: #9F2DFD;
-        }
-
-        .iframe-container { 
-            width: 100%; 
-            height: 75vh; /* ใช้ vh แทน fixed pixel เพื่อความยืดหยุ่น */
-            border: none;
-            overflow-y: auto; /* เพิ่มการเลื่อนภายใน */
-            -webkit-overflow-scrolling: touch; /* สำคัญมากสำหรับ Apple OS */
-        }
-        
-        /* แก้ปัญหาการเลื่อนบน iOS */
-        .modal-body {
-            -webkit-overflow-scrolling: touch;
-            overflow-y: auto;
-        }
+        .card-menu:hover { transform: scale(1.02); }
+        .icon-box { font-size: 2rem; color: #9F2DFD; }
+        .iframe-container { width: 100%; height: 70vh; border: none; }
     </style>
 </head>
 <body>
-<!-- ส่วนแสดง Loading -->
-<div id="loading-overlay">
-    <div class="spinner-border" role="status">
-        <span class="visually-hidden">กำลังโหลด...</span>
-    </div>
-</div>
+
 <div class="container dashboard-container text-center">
-  <!-- ปรับปรุงรูปภาพโดยใช้ ID ที่ถูกต้อง -->
     <img src="https://lh3.googleusercontent.com/d/1IAE1glO9bBYgpWwoqMZENtA7xRa7YzCP" 
-             alt="Association Logo" 
-             class="logo-header img-fluid" 
-             style="width: 70%; max-width: 200px; height: auto; margin-bottom: 2rem;"
-             onerror="this.src='https://placehold.co/300x150/png?text=Logo';">
-    <header class="text-center text-white mb-5">
-        <h1 class="display-5 fw-bold">ระบบบริหารจัดการ</h1>
-        <h4 class="mt-3">สมาคมผู้ประกอบวิชาชีพบริการการศึกษาสถานศึกษาเอกชน จังหวัดปทุมธานี</h4>
-        <p>เลือกเมนูเพื่อเริ่มการจัดการ</p>
+         class="img-fluid mb-3" 
+         style="width: 60%; max-width: 150px;"
+         onerror="this.src='https://placehold.co/300x150/png?text=Logo';">
+    
+    <header class="text-white mb-4">
+        <h1 class="fw-bold">ระบบบริหารจัดการ</h1>
+        <h4 class="mt-2">สมาคมผู้ประกอบวิชาชีพบริการการศึกษาสถานศึกษาเอกชน จังหวัดปทุมธานี</h4>
     </header>
 
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card card-menu p-4 text-center" data-bs-toggle="modal" data-bs-target="#appModal" onclick="loadContent(1)">
+    <div class="row g-3">
+        <div class="col-4">
+            <div class="card card-menu p-3" onclick="loadContent(1)">
                 <div class="icon-box"><i class="fa-solid fa-user-plus"></i></div>
-                <h5 class="mt-3">ลงทะเบียน</h5>
+                <small class="fw-bold">ลงทะเบียน</small>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card card-menu p-4 text-center" data-bs-toggle="modal" data-bs-target="#appModal" onclick="loadContent(2)">
+        <div class="col-4">
+            <div class="card card-menu p-3" onclick="loadContent(2)">
                 <div class="icon-box"><i class="fa-solid fa-file-invoice"></i></div>
-                <h5 class="mt-3">ส่งหลักฐาน</h5>
+                <small class="fw-bold">ส่งหลักฐาน</small>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card card-menu p-4 text-center" data-bs-toggle="modal" data-bs-target="#appModal" onclick="loadContent(3)">
+        <div class="col-4">
+            <div class="card card-menu p-3" onclick="loadContent(3)">
                 <div class="icon-box"><i class="fa-solid fa-microphone-lines"></i></div>
-                <h5 class="mt-3">รายงานการประชุม</h5>
+                <small class="fw-bold">ประชุม</small>
             </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="appModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content rounded-4">
+<div class="modal fade" id="appModal" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen-sm-down modal-xl">
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalTitle"></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
-                <iframe id="modalIframe" class="iframe-container" src=""></iframe>
+            <div class="modal-body p-0">
+                <iframe id="modalIframe" class="iframe-container"></iframe>
             </div>
         </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     function loadContent(id) {
-        // แสดง Loading
+        const modal = new bootstrap.Modal(document.getElementById('appModal'));
+        modal.show();
+        
         Swal.fire({
-            title: 'กำลังโหลดข้อมูล...',
-            allowOutsideClick: false,
-            didOpen: () => { Swal.showLoading() }
+            title: 'กำลังโหลด...',
+            didOpen: () => { Swal.showLoading() },
+            allowOutsideClick: false
         });
 
         const iframe = document.getElementById('modalIframe');
-        const title = document.getElementById('modalTitle');
+        const titles = { 1: "ลงทะเบียนสมาชิก", 2: "ระบบส่งหลักฐาน", 3: "รายงานการประชุม" };
         const urls = {
             1: "https://script.google.com/macros/s/AKfycbxORjhfZ4asQEMn7MBLkU030PS6Y7JCnRbYLRc46BReHmUr5V34JCTzpMB6ZyiZ4YQb/exec",
             2: "https://script.google.com/macros/s/AKfycbw7Uy8XM8KnZUu6T_xSbO3e8e5bwXozNvVewd7HJ3mYG3yUXmaiN22DOv-_kjL_jTnl/exec",
             3: "https://script.google.com/macros/s/AKfycbzjfZYrReeP0V7dmxAtsHO2aCQb7jcx8TiH-7-7NCS13lcUMsqu9VLnjjVdkXFsM78cZw/exec"
         };
-        const titles = { 1: "ลงทะเบียนสมาชิก", 2: "ระบบส่งหลักฐาน", 3: "รายงานการประชุม" };
         
+        document.getElementById('modalTitle').innerText = titles[id];
         iframe.src = urls[id];
-        title.innerText = titles[id];
-
-        // ซ่อนเมื่อโหลดเสร็จ
-        iframe.onload = function() {
-            Swal.close();
-        };
+        iframe.onload = () => Swal.close();
     }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
